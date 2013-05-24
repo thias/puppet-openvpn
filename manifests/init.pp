@@ -6,13 +6,13 @@
 #
 class openvpn {
 
-    package { 'openvpn': ensure => installed }
+  package { 'openvpn': ensure => installed }
 
-    # OpenVPN service, special case since it's one service for all connections
-    service { 'openvpn':
-        enable  => true,
-        require => Package['openvpn'],
-    }
+  # OpenVPN service, special case since it's one service for all connections
+  service { 'openvpn':
+    enable  => true,
+    require => Package['openvpn'],
+  }
 
 }
 
