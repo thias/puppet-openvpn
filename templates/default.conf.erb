@@ -8,7 +8,7 @@ float
 ifconfig <%= @ipaddress_local %> <%= @ipaddress_remote %>
 <% if !@routes.empty? -%>
 # Static routes
-<% routes.each do |route| -%>
+<% @routes.each do |route| -%>
 route <%= route %>
 <% end -%>
 <% end -%>
