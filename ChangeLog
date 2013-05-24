@@ -1,6 +1,7 @@
 * Update README and use markdown.
 * Change to 2-space indent.
 * Add missing @ variable prefix in config template.
+* Change conftemplate to be a wrapper of conf, to avoid duplicating code.
 
 2012-09-25 - 0.1.1
 * Start cleaning up the module.

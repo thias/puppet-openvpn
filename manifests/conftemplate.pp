@@ -1,3 +1,8 @@
+# Define: openvpn::conftemplate
+#
+# Wrapper around openvpn::conf which uses a template included in the module,
+# useful for simple shared key VPN links.
+#
 define openvpn::conftemplate (
   $dir = '/etc/openvpn',
   # Template options
@@ -11,28 +16,11 @@ define openvpn::conftemplate (
   $port = '1194'
 ) {
 
-  include openvpn
-
-  file { "${dir}/${title}.conf":
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0640',
+  openvpn::conf { $title:
+    dir     => $dir,
     content => template('openvpn/default.conf.erb'),
     # The secret file referenced, which already requires the parent dir
     require => File["${dir}/${secret}"],
-  }
-  # start
-  exec { "openvpn-start-${title}":
-    command => "/usr/sbin/openvpn --daemon --writepid /var/run/openvpn/${title}.pid --config ${title}.conf --cd ${dir}",
-    cwd     => $dir,
-    require => File["${dir}/${title}.conf"],
-    creates => "/var/run/openvpn/${title}.pid",
-  }
-  # FIXME : stop/restart
-  exec { "openvpn-stop-${title}":
-    command => "kill `cat /var/run/openvpn/${title}.pid`",
-    path    => [ '/bin', '/usr/bin' ],
-    refreshonly => true, 
   }
 
 }
