@@ -2,7 +2,9 @@
 
 ## Overview
 
-Puppet module to manage OpenVPN on Red Hat Enterprise Linux (RHEL) or clones.
+Puppet module to manage OpenVPN links. It supports Red Hat Enterprise Linux
+(RHEL) or any of its clones, as well as Gentoo Linux, and should be easy to
+modify to support more distributions.
 
 * `openvpn` : Main class to install, enable and configure the service.
 * `openvpn::conf` : Definition to manage OpenVPN configuration files.
