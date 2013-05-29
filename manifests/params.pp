@@ -6,10 +6,12 @@ class openvpn::params {
     'RedHat', 'Fedora', 'CentOS': {
       $package = 'openvpn'
       $service = 'openvpn'
+      $multiservice = false
     }
     'Gentoo': {
       $package = 'net-misc/openvpn'
       $service = 'openvpn'
+      $multiservice = true
     }
     default: {
       # Bail out, since work will be needed
