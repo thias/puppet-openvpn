@@ -4,12 +4,15 @@
 # Sample Usage :
 #     include openvpn
 #
-class openvpn {
+class openvpn inherits ::openvpn::params {
 
-  package { 'openvpn': ensure => installed }
+  package { $openvpn::params::package:
+    alias => 'openvpn',
+    ensure => installed
+  }
 
   # OpenVPN service, special case since it's one service for all connections
-  service { 'openvpn':
+  service { $openvpn::params::service:
     enable  => true,
     require => Package['openvpn'],
   }
