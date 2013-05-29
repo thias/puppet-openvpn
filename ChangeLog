@@ -1,3 +1,4 @@
+2013-05-29 - 0.2.1
 * Add a params class for package and service names.
 * Support "multiservice", where each conf has its own init.d symlink (Gentoo).
 
