@@ -40,7 +40,10 @@ define openvpn::conf (
     }
     service { "openvpn.${title}":
       enable  => true,
-      require => File["/etc/init.d/openvpn.${title}"],
+      require => [
+        File["/etc/init.d/openvpn.${title}"],
+        File["${dir}/${title}.conf"],
+      ],
       ensure  => $ensure_service,
     }
 
