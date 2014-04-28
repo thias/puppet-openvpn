@@ -7,12 +7,14 @@
 #     }
 #
 define openvpn::secret (
-  $dir = '/etc/openvpn',
+  $ensure  = undef,
+  $dir     = '/etc/openvpn',
   $source  = undef,
   $content = undef
 ) {
 
   file { "${dir}/${title}":
+    ensure  => $ensure,
     owner   => 'root',
     group   => 'root',
     mode    => '0600',

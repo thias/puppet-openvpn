@@ -1,5 +1,6 @@
 * Fix service requirement for multiservice conf.
 * Add fragment and mssfix to the default.conf template.
+* Support absent for secret files.
 
 2013-10-02 - 0.2.2
 * Add suport for Ubuntu/Debian, it works fine out of the box (rjpearce).
