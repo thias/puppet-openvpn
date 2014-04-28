@@ -4,16 +4,18 @@
 # useful for simple shared key VPN links.
 #
 define openvpn::conftemplate (
-  $dir = '/etc/openvpn',
+  $dir              = '/etc/openvpn',
   # Template options
   $dev,
+  $fragment         = undef,
+  $mssfix           = undef,
   $remote,
-  $float = false,
-  $ipaddress_local = $ipaddress,
+  $float            = undef,
+  $ipaddress_local  = $::ipaddress,
   $ipaddress_remote,
-  $routes = [],
+  $routes           = [],
   $secret,
-  $port = '1194'
+  $port             = '1194',
 ) {
 
   openvpn::conf { $title:

@@ -1,4 +1,10 @@
 dev <%= @dev %>
+<% if @fragment -%>
+fragment <%= @fragment %>
+<% end -%>
+<% if @mssfix -%>
+mssfix
+<% end -%>
 remote <%= @remote %>
 <% if @float -%>
 float
