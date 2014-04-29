@@ -6,12 +6,16 @@ class openvpn::params {
     'RedHat', 'Fedora', 'CentOS': {
       $package = 'openvpn'
       $service = 'openvpn'
-      $multiservice = false
+      if $::operatingsystemmajrelease >= 7 {
+        $multiservice = 'systemd'
+      } else {
+        $multiservice = false
+      }
     }
     'Gentoo': {
       $package = 'net-misc/openvpn'
       $service = 'openvpn'
-      $multiservice = true
+      $multiservice = 'init'
     }
     'Ubuntu', 'Debian': {
       $package = 'openvpn'

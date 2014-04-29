@@ -1,3 +1,5 @@
+* Add support for RHEL7 (systemctl with '@' multiservice).
+
 2014-04-28 - 0.2.3
 * Fix service requirement for multiservice conf.
 * Add fragment and mssfix to the default.conf template.

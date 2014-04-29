@@ -2,10 +2,10 @@
 # FIXME : Implement auto restart of the configured link after changes.
 #
 define openvpn::conf (
-  $dir = '/etc/openvpn',
-  $source = undef,
+  $dir     = '/etc/openvpn',
+  $source  = undef,
   $content = undef,
-  $ensure = undef
+  $ensure  = undef
 ) {
 
   if $ensure == 'absent' {
@@ -16,7 +16,7 @@ define openvpn::conf (
     $ensure_link = 'link'
   }
 
-  include openvpn
+  include '::openvpn'
 
   file { "${dir}/${title}.conf":
     owner   => 'root',
@@ -29,7 +29,7 @@ define openvpn::conf (
     ensure  => $ensure,
   }
 
-  if $openvpn::params::multiservice {
+  if $openvpn::params::multiservice == 'init' {
 
     file { "/etc/init.d/openvpn.${title}":
       owner   => 'root',
@@ -45,6 +45,26 @@ define openvpn::conf (
         File["${dir}/${title}.conf"],
       ],
       ensure  => $ensure_service,
+    }
+
+  } elsif $openvpn::params::multiservice == 'systemd' {
+
+    service { "openvpn@${title}":
+      # This doesn't work (RHEL7 RC, 201404), work around below
+      #enable  => true,
+      require => File["${dir}/${title}.conf"],
+      ensure  => $ensure_service,
+    }
+    if $ensure == 'absent' {
+      exec { "systemctl disable openvpn@${title}.service":
+        onlyif => "test -f /etc/systemd/system/multi-user.target.wants/openvpn@${title}.service",
+        path   => [ '/bin', '/usr/bin' ],
+      }
+    } else {
+      exec { "systemctl enable openvpn@${title}.service":
+        creates => "/etc/systemd/system/multi-user.target.wants/openvpn@${title}.service",
+        path    => [ '/bin', '/usr/bin' ],
+      }
     }
 
   } else {
