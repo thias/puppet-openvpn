@@ -16,6 +16,9 @@ define openvpn::conftemplate (
   $routes           = [],
   $secret,
   $port             = '1194',
+  $user             = 'openvpn',
+  $group            = 'openvpn',
+  $verb             = '3'
 ) {
 
   openvpn::conf { $title:

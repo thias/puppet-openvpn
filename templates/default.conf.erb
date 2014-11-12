@@ -22,10 +22,10 @@ secret <%= @secret %>
 port <%= @port %>
 
 comp-lzo
-user openvpn
-group openvpn
+user <%= @user %>
+group <%= @group %>
 persist-key
 persist-tun
 mute-replay-warnings
-verb 3
+verb <%= @verb %>
 
