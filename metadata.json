@@ -1,6 +1,6 @@
 {
   "name": "thias-openvpn",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "author": "Matthias Saou",
   "license": "Apache-2.0",
   "summary": "OpenVPN module",
