@@ -7,8 +7,8 @@
 class openvpn inherits ::openvpn::params {
 
   package { $openvpn::params::package:
-    alias => 'openvpn',
-    ensure => installed
+    ensure => 'installed',
+    alias  => 'openvpn',
   }
 
   # OpenVPN service, special case since it's one service for all connections

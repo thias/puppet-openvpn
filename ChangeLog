@@ -2,6 +2,7 @@
 * Rename startup script class for future parser compatibility.
 * Update README.
 * Add user/group and verb options for conftemplate (#3, @kernel23).
+* Minor clean ups and changes to make puppet-lint happy.
 
 2014-05-05 - 0.2.4
 * Add support for RHEL7 (systemctl with '@' multiservice).

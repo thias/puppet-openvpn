@@ -2,10 +2,10 @@
 # FIXME : Implement auto restart of the configured link after changes.
 #
 define openvpn::conf (
+  $ensure  = undef,
   $dir     = '/etc/openvpn',
   $source  = undef,
   $content = undef,
-  $ensure  = undef
 ) {
 
   if $ensure == 'absent' {
@@ -19,6 +19,7 @@ define openvpn::conf (
   include '::openvpn'
 
   file { "${dir}/${title}.conf":
+    ensure  => $ensure,
     owner   => 'root',
     group   => 'root',
     mode    => '0640',
@@ -26,34 +27,33 @@ define openvpn::conf (
     content => $content,
     # For the default parent directory
     require => Package['openvpn'],
-    ensure  => $ensure,
   }
 
   if $openvpn::params::multiservice == 'init' {
 
     file { "/etc/init.d/openvpn.${title}":
+      ensure  => $ensure_link,
       owner   => 'root',
       group   => 'root',
       target  => 'openvpn',
       require => Package['openvpn'],
-      ensure  => $ensure_link,
     }
     service { "openvpn.${title}":
+      ensure  => $ensure_service,
       enable  => true,
       require => [
         File["/etc/init.d/openvpn.${title}"],
         File["${dir}/${title}.conf"],
       ],
-      ensure  => $ensure_service,
     }
 
   } elsif $openvpn::params::multiservice == 'systemd' {
 
     service { "openvpn@${title}":
+      ensure  => $ensure_service,
       # This doesn't work (RHEL7 RC, 201404), work around below
       #enable  => true,
       require => File["${dir}/${title}.conf"],
-      ensure  => $ensure_service,
     }
     if $ensure == 'absent' {
       exec { "systemctl disable openvpn@${title}.service":
@@ -79,9 +79,9 @@ define openvpn::conf (
     }
     # FIXME : stop/restart
     exec { "openvpn-stop-${title}":
-      command => "kill `cat /var/run/openvpn/${title}.pid`",
-      path    => [ '/bin', '/usr/bin' ],
-      refreshonly => true, 
+      command     => "kill `cat /var/run/openvpn/${title}.pid`",
+      path        => [ '/bin', '/usr/bin' ],
+      refreshonly => true,
     }
 
   }
