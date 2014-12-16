@@ -1,3 +1,6 @@
+* Rename startup script class for future parser compatibility.
+* Update README.
+
 2014-05-05 - 0.2.4
 * Add support for RHEL7 (systemctl with '@' multiservice).
 

@@ -1,13 +1,13 @@
-# Class: openvpn::startup-script
+# Class: openvpn::startup_script
 #
 # Example Usage:
 #  $tapdev = 'tap1'
 #  $tapbridge = 'br1'
-#  class { 'openvpn::startup-script':
+#  class { 'openvpn::startup_script':
 #      content => template('openvpn/openvpn-startup.erb'),
 #  }
 #
-class openvpn::startup-script (
+class openvpn::startup_script (
   $dir = '/etc/openvpn',
   $source  = undef,
   $content = undef
