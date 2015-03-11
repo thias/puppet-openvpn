@@ -51,7 +51,7 @@ define openvpn::conf (
 
     service { "openvpn@${title}":
       ensure  => $ensure_service,
-      # This doesn't work (RHEL7 RC, 201404), work around below
+      # This doesn't work (RHEL7 RC, 201404), work around below (still not 7.1)
       #enable  => true,
       require => File["${dir}/${title}.conf"],
     }
@@ -61,9 +61,15 @@ define openvpn::conf (
         path   => [ '/bin', '/usr/bin' ],
       }
     } else {
-      exec { "systemctl enable openvpn@${title}.service":
-        creates => "/etc/systemd/system/multi-user.target.wants/openvpn@${title}.service",
-        path    => [ '/bin', '/usr/bin' ],
+      # FIXME : 'sytemctl enable' broke from RHEL 7.0 to 7.1 with
+      #         'Failed to issue method call: No such file or directory'
+      #exec { "systemctl enable openvpn@${title}.service":
+      #  creates => "/etc/systemd/system/multi-user.target.wants/openvpn@${title}.service",
+      #  path    => [ '/bin', '/usr/bin' ],
+      #}
+      file { "/etc/systemd/system/multi-user.target.wants/openvpn@${title}.service":
+        ensure => 'link',
+        target => '/usr/lib/systemd/system/openvpn@.service',
       }
     }
 
