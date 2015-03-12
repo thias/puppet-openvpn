@@ -1,3 +1,4 @@
+#### 2015-03-12 - 1.0.0
 * Work around for service enable broken on RHEL 7.1.
 
 #### 2014-12-16 - 0.2.6
