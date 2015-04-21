@@ -6,7 +6,7 @@ class openvpn::params {
     'RedHat', 'Fedora', 'CentOS': {
       $package = 'openvpn'
       $service = 'openvpn'
-      if $::operatingsystemmajrelease >= 7 {
+      if versioncmp($::operatingsystemrelease, '7') >= 0 {
         $multiservice = 'systemd'
       } else {
         $multiservice = false

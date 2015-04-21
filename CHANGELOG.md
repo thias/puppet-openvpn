@@ -1,3 +1,5 @@
+* Fix OS version comparison for Puppet 4.
+
 #### 2015-03-12 - 1.0.0
 * Work around for service enable broken on RHEL 7.1.
 
