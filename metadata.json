@@ -1,9 +1,9 @@
 {
   "name": "thias-openvpn",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Matthias Saou",
   "license": "Apache-2.0",
-  "summary": "OpenVPN module",
+  "summary": "Install, enable and configure OpenVPN servers and static clients",
   "source": "https://github.com/thias/puppet-openvpn",
   "project_page": "https://forge.puppetlabs.com/thias/openvpn",
   "issues_url": "https://github.com/thias/puppet-openvpn/issues",
@@ -29,10 +29,9 @@
   "requirements": [
     {
     "name": "puppet",
-    "version_requirement": ">=2.7.20 <4.0.0"
+    "version_requirement": ">=2.7.20 <4.1.0"
     }
   ],
-  "description": "Install, enable and configure OpenVPN servers and static clients",
   "dependencies": [
   ]
 }
