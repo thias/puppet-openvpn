@@ -9,6 +9,7 @@ define openvpn::conftemplate (
   $remote,
   $ipaddress_remote,
   $secret,
+  $proto            = undef,
   $fragment         = undef,
   $mssfix           = undef,
   $float            = undef,
