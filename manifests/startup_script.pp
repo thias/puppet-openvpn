@@ -13,6 +13,12 @@ class openvpn::startup_script (
   $content = undef
 ) {
 
+  include '::openvpn::params'
+  # Multi-service is tricky, many service names...
+  if ! $::openvpn::params::multiservice {
+    File["${dir}/openvpn-startup"] ~> Service['openvpn']
+  }
+
   file { "${dir}/openvpn-startup":
     owner   => 'root',
     group   => 'root',
@@ -21,7 +27,6 @@ class openvpn::startup_script (
     content => $content,
     # For the default parent directory
     require => Package['openvpn'],
-    before  => Service['openvpn'],
   }
 
 }

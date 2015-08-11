@@ -1,4 +1,5 @@
 * Add support for proto in conftemplate.
+* Fix startup_script with multiservice.
 
 #### 2015-04-28 - 1.0.1
 * Fix OS version comparison for Puppet 4.
