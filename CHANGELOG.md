@@ -1,5 +1,6 @@
 * Add support for proto in conftemplate.
 * Fix startup_script with multiservice.
+* Do not output secret files changes with show_diff (#4, @TJM).
 
 #### 2015-04-28 - 1.0.1
 * Fix OS version comparison for Puppet 4.

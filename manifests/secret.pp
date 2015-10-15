@@ -14,14 +14,16 @@ define openvpn::secret (
 ) {
 
   file { "${dir}/${title}":
-    ensure  => $ensure,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0600',
-    source  => $source,
-    content => $content,
+    ensure    => $ensure,
+    owner     => 'root',
+    group     => 'root',
+    mode      => '0600',
+    source    => $source,
+    content   => $content,
+    # Don't output change details to logs
+    show_diff => false,
     # For the default parent directory
-    require => Package['openvpn'],
+    require   => Package['openvpn'],
   }
 
 }
