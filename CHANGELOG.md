@@ -1,3 +1,4 @@
+#### 2015-10-15 - 1.0.2
 * Add support for proto in conftemplate.
 * Fix startup_script with multiservice.
 * Do not output secret files changes with show_diff (#4, @TJM).
