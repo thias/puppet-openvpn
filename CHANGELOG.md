@@ -1,3 +1,6 @@
+#### 2016-02-02 - 1.0.3
+* Refresh (multi)service when config file changes (#6, @jlambert121).
+
 #### 2015-10-15 - 1.0.2
 * Add support for proto in conftemplate.
 * Fix startup_script with multiservice.
