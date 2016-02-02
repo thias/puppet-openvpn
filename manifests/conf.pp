@@ -39,21 +39,19 @@ define openvpn::conf (
       require => Package['openvpn'],
     }
     service { "openvpn.${title}":
-      ensure  => $ensure_service,
-      enable  => true,
-      require => [
-        File["/etc/init.d/openvpn.${title}"],
-        File["${dir}/${title}.conf"],
-      ],
+      ensure    => $ensure_service,
+      enable    => true,
+      require   => File["/etc/init.d/openvpn.${title}"],
+      subscribe => File["${dir}/${title}.conf"],
     }
 
   } elsif $openvpn::params::multiservice == 'systemd' {
 
     service { "openvpn@${title}":
-      ensure  => $ensure_service,
+      ensure    => $ensure_service,
       # This doesn't work (RHEL7 RC, 201404), work around below (still not 7.1)
       #enable  => true,
-      require => File["${dir}/${title}.conf"],
+      subscribe => File["${dir}/${title}.conf"],
     }
     if $ensure == 'absent' {
       exec { "systemctl disable openvpn@${title}.service":
@@ -93,4 +91,3 @@ define openvpn::conf (
   }
 
 }
-
