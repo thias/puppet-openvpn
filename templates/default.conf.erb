@@ -5,6 +5,9 @@ fragment <%= @fragment %>
 <% if @mssfix -%>
 mssfix
 <% end -%>
+<% if @local -%>
+local <%= @local %>
+<% end -%>
 remote <%= @remote %>
 <% if @proto -%>
 proto <%= proto %>
