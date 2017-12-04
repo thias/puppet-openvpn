@@ -1,3 +1,6 @@
+#### 2017-12-04 - 1.0.4
+* Add local source address conftemplate parameter (#7, @forgodssake).
+
 #### 2016-02-02 - 1.0.3
 * Refresh (multi)service when config file changes (#6, @jlambert121).
 
