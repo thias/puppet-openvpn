@@ -1,3 +1,6 @@
+#### 2019-01-21 - 1.0.5
+* Make sure openvpn-startup doesn't fail if tap already exists in bridge.
+
 #### 2017-12-04 - 1.0.4
 * Add local source address conftemplate parameter (#7, @forgodssake).
 

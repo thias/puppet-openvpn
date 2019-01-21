@@ -7,4 +7,5 @@
 ifconfig <%= @tapdev %> &>/dev/null || openvpn --mktun --dev <%= @tapdev %>
 ifconfig <%= @tapdev %> up
 brctl addif <%= @tapbridge %> <%= @tapdev %> &>/dev/null
+exit 0
 
