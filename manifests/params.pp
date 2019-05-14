@@ -20,7 +20,11 @@ class openvpn::params {
     'Ubuntu', 'Debian': {
       $package = 'openvpn'
       $service = 'openvpn'
-      $multiservice = false
+      if versioncmp($::operatingsystemrelease, '16') >= 0 {
+        $multiservice = 'systemd'
+      } else {
+        $multiservice = false
+      }
     }
     default: {
       # Bail out, since work will be needed
