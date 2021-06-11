@@ -26,8 +26,13 @@ route <%= route %>
 <% end -%>
 secret <%= @secret %>
 port <%= @port %>
+<% @extra_lines.each do |line| -%>
+<%= line %>
+<% end -%>
 
+<% if @comp_lzo -%>
 comp-lzo
+<% end -%>
 user <%= @user %>
 group <%= @group %>
 persist-key

@@ -17,9 +17,11 @@ define openvpn::conftemplate (
   $ipaddress_local  = $::ipaddress,
   $routes           = [],
   $port             = '1194',
+  $comp_lzo         = true,
   $user             = 'openvpn',
   $group            = 'openvpn',
   $verb             = '3',
+  $extra_lines      = [],
   # Main options
   $dir              = '/etc/openvpn',
 ) {

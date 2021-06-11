@@ -1,3 +1,5 @@
+* Allow disabling compression and adding extra lines in conftemplate.
+
 #### 2019-01-21 - 1.0.5
 * Make sure openvpn-startup doesn't fail if tap already exists in bridge.
 
