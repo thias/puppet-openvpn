@@ -15,7 +15,7 @@ class openvpn inherits ::openvpn::params {
   if $::openvpn::params::multiservice == false {
     service { $openvpn::params::service:
       enable  => true,
-      require => Package['openvpn'],
+      require => Package[$::openvpn::params::package],
     }
   }
 
