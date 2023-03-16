@@ -8,25 +8,28 @@
 #  }
 #
 class openvpn::startup_script (
-  $dir = '/etc/openvpn',
+  $dir = undef,
   $source  = undef,
   $content = undef
 ) {
 
   include '::openvpn::params'
+
+  $config_dir = pick($dir, $::openvpn::params::dir)
+
   # Multi-service is tricky, many service names...
   if ! $::openvpn::params::multiservice {
-    File["${dir}/openvpn-startup"] ~> Service['openvpn']
+    File["${config_dir}/openvpn-startup"] ~> Service[$::openvpn::params::service]
   }
 
-  file { "${dir}/openvpn-startup":
+  file { "${config_dir}/openvpn-startup":
     owner   => 'root',
     group   => 'root',
     mode    => '0750',
     source  => $source,
     content => $content,
     # For the default parent directory
-    require => Package['openvpn'],
+    require => Package[$::openvpn::params::package],
   }
 
 }
