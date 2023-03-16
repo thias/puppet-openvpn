@@ -14,6 +14,7 @@ define openvpn::conftemplate (
   $fragment         = undef,
   $mssfix           = undef,
   $float            = undef,
+  $cipher           = undef,
   $ipaddress_local  = $::ipaddress,
   $routes           = [],
   $port             = '1194',
@@ -23,14 +24,18 @@ define openvpn::conftemplate (
   $verb             = '3',
   $extra_lines      = [],
   # Main options
-  $dir              = '/etc/openvpn',
+  $dir              = undef,
 ) {
 
+  include '::openvpn::params'
+
+  $config_dir = pick($dir, $::openvpn::params::dir)
+
   openvpn::conf { $title:
-    dir     => $dir,
+    dir     => $config_dir,
     content => template('openvpn/default.conf.erb'),
     # The secret file referenced, which already requires the parent dir
-    require => File["${dir}/${secret}"],
+    require => File["${config_dir}/${secret}"],
   }
 
 }

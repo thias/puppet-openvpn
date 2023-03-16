@@ -8,12 +8,16 @@
 #
 define openvpn::secret (
   $ensure  = undef,
-  $dir     = '/etc/openvpn',
+  $dir     = undef,
   $source  = undef,
   $content = undef
 ) {
 
-  file { "${dir}/${title}":
+  include '::openvpn'
+
+  $config_dir = pick($dir, $::openvpn::params::dir)
+
+  file { "${config_dir}/${title}":
     ensure    => $ensure,
     owner     => 'root',
     group     => 'root',
@@ -23,7 +27,7 @@ define openvpn::secret (
     # Don't output change details to logs
     show_diff => false,
     # For the default parent directory
-    require   => Package['openvpn'],
+    require   => Package[$::openvpn::params::package],
   }
 
 }

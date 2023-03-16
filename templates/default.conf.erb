@@ -10,7 +10,10 @@ local <%= @local %>
 <% end -%>
 remote <%= @remote %>
 <% if @proto -%>
-proto <%= proto %>
+proto <%= @proto %>
+<% end -%>
+<% if @cipher -%>
+cipher <%= @cipher %>
 <% end -%>
 <% if @float -%>
 float
