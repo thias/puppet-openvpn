@@ -23,7 +23,7 @@
     },
     {
     "operatingsystem":"Ubuntu",
-    "operatingsystemrelease":[ "12", "14" ]
+    "operatingsystemrelease":[ "12", "14", "16" ]
     }
   ],
   "requirements": [
