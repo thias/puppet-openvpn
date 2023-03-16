@@ -1,3 +1,7 @@
+#### 2023-03-16 - 1.0.7
+* Add support for RHEL9.
+
+#### 2021-06-12 - 1.0.6
 * Allow disabling compression and adding extra lines in conftemplate.
 
 #### 2019-01-21 - 1.0.5
