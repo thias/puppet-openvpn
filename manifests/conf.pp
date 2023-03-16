@@ -2,11 +2,11 @@
 # FIXME : Implement auto restart of the configured link after changes.
 #
 define openvpn::conf (
-  $ensure       = undef,
-  $service      = undef,
-  $dir          = undef,
-  $source       = undef,
-  $content      = undef,
+  $ensure  = undef,
+  $service = undef,
+  $dir     = undef,
+  $source  = undef,
+  $content = undef,
 ) {
 
   if $ensure == 'absent' {
