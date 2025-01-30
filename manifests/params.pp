@@ -2,15 +2,15 @@
 #
 class openvpn::params {
 
-  case $::operatingsystem {
+  case $facts['os']['name'] {
     'RedHat', 'Fedora', 'CentOS': {
       $package = 'openvpn'
-      if versioncmp($::operatingsystemrelease, '7') >= 0 {
+      if versioncmp($facts['os']['release']['major'], '7') >= 0 {
         $multiservice = 'systemd'
       } else {
         $multiservice = false
       }
-      if versioncmp($::operatingsystemrelease, '9') >= 0 {
+      if versioncmp($facts['os']['release']['major'], '9') >= 0 {
         $service = 'openvpn-server'
         $dir = '/etc/openvpn/server'
       } else {
@@ -27,7 +27,7 @@ class openvpn::params {
     'Ubuntu', 'Debian': {
       $package = 'openvpn'
       $service = 'openvpn'
-      if versioncmp($::operatingsystemrelease, '16') >= 0 {
+      if versioncmp($facts['os']['release']['major'], '16') >= 0 {
         $multiservice = 'systemd'
       } else {
         $multiservice = false
@@ -36,7 +36,7 @@ class openvpn::params {
     }
     default: {
       # Bail out, since work will be needed
-      fail("Unsupported operatingsystem ${::operatingsystem}.")
+      fail("Unsupported operatingsystem ${facts['os']['name']}.")
     }
   }
 

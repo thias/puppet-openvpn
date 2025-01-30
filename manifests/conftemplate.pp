@@ -15,7 +15,7 @@ define openvpn::conftemplate (
   $mssfix           = undef,
   $float            = undef,
   $cipher           = undef,
-  $ipaddress_local  = $::ipaddress,
+  $ipaddress_local  = $facts['networking']['ip'],
   $routes           = [],
   $port             = '1194',
   $comp_lzo         = true,
